@@ -9,41 +9,25 @@
     body {
         margin: 0;
         height: 100vh;
-        background: radial-gradient(circle at top, #5a0f1b, #1a0508);
+        background: radial-gradient(circle at top, #6a0f1b, #120406);
         overflow: hidden;
         font-family: 'Georgia', serif;
-        color: #f8eaea;
+        color: #f6eaea;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .sparkle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 50%;
-        animation: sparkle 3s linear infinite;
-        pointer-events: none;
-    }
-
-    @keyframes sparkle {
-        0% { transform: scale(0); opacity: 0; }
-        50% { opacity: 1; }
-        100% { transform: scale(1.5); opacity: 0; }
-    }
-
     .container {
         text-align: center;
-        z-index: 10;
+        z-index: 5;
         padding: 20px;
     }
 
     h1 {
-        font-size: clamp(2em, 6vw, 3em);
-        text-shadow: 0 0 20px rgba(255, 150, 150, 0.8);
-        margin-bottom: 20px;
+        font-size: clamp(2.2em, 6vw, 3em);
+        text-shadow: 0 0 25px rgba(255, 180, 180, 0.9);
+        margin-bottom: 25px;
     }
 
     img {
@@ -51,19 +35,19 @@
         height: min(70vw, 260px);
         object-fit: cover;
         border-radius: 20px;
-        box-shadow: 0 0 40px rgba(255, 200, 200, 0.6);
-        margin-bottom: 25px;
+        box-shadow: 0 0 45px rgba(255, 215, 150, 0.8);
+        margin-bottom: 30px;
     }
 
     .buttons {
         position: relative;
-        height: 180px;
+        height: 200px;
     }
 
     button {
-        padding: 15px 35px;
+        padding: 15px 38px;
         font-size: 1.3em;
-        border-radius: 15px;
+        border-radius: 18px;
         border: none;
         cursor: pointer;
         position: absolute;
@@ -71,18 +55,55 @@
     }
 
     #yes {
-        background: linear-gradient(135deg, #a0122a, #6a0f1b);
+        background: linear-gradient(135deg, #b01630, #6a0f1b);
         color: #fff;
         left: 50%;
         transform: translateX(-120%);
-        box-shadow: 0 0 25px rgba(255, 80, 120, 0.8);
+        box-shadow: 0 0 30px rgba(255, 100, 150, 1);
     }
 
     #no {
-        background: #2b2b2b;
+        background: linear-gradient(135deg, #333, #111);
         color: #fff;
         left: 50%;
         transform: translateX(20%);
+    }
+
+    /* GOLD & STAR PARTICLES */
+    .star, .glitter {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    .star {
+        width: 6px;
+        height: 6px;
+        background: gold;
+        border-radius: 50%;
+        box-shadow: 0 0 12px gold;
+        animation: fall 4s linear infinite;
+    }
+
+    .glitter {
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 0 10px white;
+        animation: sparkle 3s linear infinite;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-10vh); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }
+
+    @keyframes sparkle {
+        0% { transform: scale(0); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: scale(1.6); opacity: 0; }
     }
 
 </style>
@@ -102,46 +123,56 @@
 </div>
 
 <script>
-    const noButton = document.getElementById("no");
+    const noBtn = document.getElementById("no");
+    let dodgeLevel = 1;
 
-    function moveButton() {
-        const padding = 80;
-        const x = Math.random() * (window.innerWidth - padding);
-        const y = Math.random() * (window.innerHeight - padding);
-        noButton.style.left = x + "px";
-        noButton.style.top = y + "px";
+    function dodge() {
+        dodgeLevel++;
+        const pad = 120;
+        const x = Math.random() * (window.innerWidth - pad);
+        const y = Math.random() * (window.innerHeight - pad);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+        noBtn.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
     }
 
-    // Desktop
-    noButton.addEventListener("mouseenter", moveButton);
-
-    // Mobile (Touch)
-    noButton.addEventListener("touchstart", moveButton);
+    noBtn.addEventListener("mouseenter", dodge);
+    noBtn.addEventListener("touchstart", dodge);
 
     function yesClicked() {
         document.body.innerHTML = `
             <div style="
-                color:#fff;
+                color:white;
                 text-align:center;
-                font-size:2.5em;
-                text-shadow:0 0 30px rgba(255,150,150,1);
+                font-size:2.8em;
+                text-shadow:0 0 40px gold;
             ">
                 💖 JAAAA 💖<br><br>
-                Ich liebe dich ✨
+                Für immer wir ✨
             </div>
         `;
     }
 
-    // Sparkle Generator
+    // GOLD STAR RAIN
     setInterval(() => {
         const s = document.createElement("div");
-        s.className = "sparkle";
+        s.className = "star";
         s.style.left = Math.random() * window.innerWidth + "px";
-        s.style.top = Math.random() * window.innerHeight + "px";
-        s.style.animationDuration = 2 + Math.random() * 3 + "s";
+        s.style.animationDuration = 3 + Math.random() * 3 + "s";
         document.body.appendChild(s);
-        setTimeout(() => s.remove(), 5000);
-    }, 80);
+        setTimeout(() => s.remove(), 6000);
+    }, 120);
+
+    // GLITTER SPARKLES
+    setInterval(() => {
+        const g = document.createElement("div");
+        g.className = "glitter";
+        g.style.left = Math.random() * window.innerWidth + "px";
+        g.style.top = Math.random() * window.innerHeight + "px";
+        g.style.animationDuration = 2 + Math.random() * 2 + "s";
+        document.body.appendChild(g);
+        setTimeout(() => g.remove(), 4000);
+    }, 70);
 </script>
 
 </body>
