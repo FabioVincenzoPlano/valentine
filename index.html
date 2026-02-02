@@ -27,7 +27,7 @@ body {
 h1 {
     font-size: clamp(2.2em, 6vw, 3em);
     text-shadow: 0 0 25px rgba(255, 180, 180, 0.9);
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 img {
@@ -44,6 +44,7 @@ img {
     height: 200px;
 }
 
+/* 🔘 BUTTONS – IDENTISCHE GRÖSSE */
 button {
     padding: 15px 38px;
     font-size: 1.3em;
@@ -51,7 +52,7 @@ button {
     border: none;
     cursor: pointer;
     position: absolute;
-    transition: transform 0.15s ease;
+    white-space: nowrap;
 }
 
 #yes {
@@ -65,8 +66,6 @@ button {
 #no {
     background: linear-gradient(135deg, #333, #111);
     color: #fff;
-    left: 50%;
-    transform: translateX(20%);
 }
 
 /* 💬 MESSAGE */
@@ -85,11 +84,9 @@ button {
     transition: opacity 0.4s ease;
     z-index: 10;
 }
-.message.show {
-    opacity: 1;
-}
+.message.show { opacity: 1; }
 
-/* ✨ PARTICLES ✨ */
+/* ✨ PARTICLES */
 .star, .glitter {
     position: absolute;
     pointer-events: none;
@@ -108,7 +105,7 @@ button {
 .glitter {
     width: 4px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255,255,255,0.9);
     border-radius: 50%;
     box-shadow: 0 0 10px white;
     animation: sparkle 3s linear infinite;
@@ -145,17 +142,21 @@ button {
 <script>
 const noBtn = document.getElementById("no");
 
-let posX = window.innerWidth / 2;
-let posY = window.innerHeight / 2;
+/* Startposition exakt sichtbar */
+let posX = window.innerWidth / 2 + 60;
+let posY = window.innerHeight / 2 + 40;
 let dodgeCount = 0;
+
+noBtn.style.left = posX + "px";
+noBtn.style.top  = posY + "px";
 
 function showMessage(text) {
     const msg = document.createElement("div");
     msg.className = "message";
-    msg.innerText = text;
+    msg.textContent = text;
     document.body.appendChild(msg);
 
-    setTimeout(() => msg.classList.add("show"), 50);
+    setTimeout(() => msg.classList.add("show"), 30);
     setTimeout(() => {
         msg.classList.remove("show");
         setTimeout(() => msg.remove(), 400);
@@ -165,11 +166,11 @@ function showMessage(text) {
 function dodge() {
     dodgeCount++;
 
-    const moveX = (Math.random() * 2 - 1) * 180;
-    const moveY = (Math.random() * 2 - 1) * 80;
+    const dx = (Math.random() * 2 - 1) * 160; // ±160px
+    const dy = (Math.random() * 2 - 1) * 60;  // ±60px
 
-    posX += moveX;
-    posY += moveY;
+    posX += dx;
+    posY += dy;
 
     const minX = window.innerWidth / 2 - 220;
     const maxX = window.innerWidth / 2 + 220;
@@ -181,7 +182,6 @@ function dodge() {
 
     noBtn.style.left = posX + "px";
     noBtn.style.top  = posY + "px";
-    noBtn.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
 
     if (dodgeCount === 3) {
         showMessage("😈 Du kannst deinem Schicksal nicht ausweichen… drück endlich auf JA.");
@@ -205,23 +205,20 @@ function yesClicked() {
     `;
 }
 
-/* ⭐ STAR RAIN */
+/* ✨ EFFECTS */
 setInterval(() => {
     const s = document.createElement("div");
     s.className = "star";
-    s.style.left = Math.random() * window.innerWidth + "px";
-    s.style.animationDuration = 3 + Math.random() * 3 + "s";
+    s.style.left = Math.random() * innerWidth + "px";
     document.body.appendChild(s);
     setTimeout(() => s.remove(), 6000);
 }, 120);
 
-/* ✨ GLITTER */
 setInterval(() => {
     const g = document.createElement("div");
     g.className = "glitter";
-    g.style.left = Math.random() * window.innerWidth + "px";
-    g.style.top = Math.random() * window.innerHeight + "px";
-    g.style.animationDuration = 2 + Math.random() * 2 + "s";
+    g.style.left = Math.random() * innerWidth + "px";
+    g.style.top = Math.random() * innerHeight + "px";
     document.body.appendChild(g);
     setTimeout(() => g.remove(), 4000);
 }, 70);
