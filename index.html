@@ -6,124 +6,104 @@
 <title>❤️ Marina & Fabio ❤️</title>
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    background: radial-gradient(circle at top, #6a0f1b, #120406);
-    overflow: hidden;
-    font-family: 'Georgia', serif;
-    color: #f6eaea;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    body {
+        margin: 0;
+        height: 100vh;
+        background: radial-gradient(circle at top, #6a0f1b, #120406);
+        overflow: hidden;
+        font-family: 'Georgia', serif;
+        color: #f6eaea;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.container {
-    text-align: center;
-    z-index: 5;
-    padding: 22px;
-    max-width: 95vw;
-}
+    .container {
+        text-align: center;
+        z-index: 5;
+        padding: 20px;
+    }
 
-h1 {
-    font-size: clamp(2em, 6vw, 3em);
-    text-shadow: 0 0 30px rgba(255, 180, 180, 1);
-    margin-bottom: 18px;
-}
+    h1 {
+        font-size: clamp(2.2em, 6vw, 3em);
+        text-shadow: 0 0 25px rgba(255, 180, 180, 0.9);
+        margin-bottom: 25px;
+    }
 
-img {
-    width: min(75vw, 260px);
-    height: min(75vw, 260px);
-    object-fit: cover;
-    border-radius: 22px;
-    box-shadow: 0 0 55px rgba(255, 215, 150, 0.9);
-    margin-bottom: 30px;
-}
+    img {
+        width: min(70vw, 260px);
+        height: min(70vw, 260px);
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 0 45px rgba(255, 215, 150, 0.8);
+        margin-bottom: 30px;
+    }
 
-.buttons {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    height: 160px;
-    margin: 0 auto;
-}
+    .buttons {
+        position: relative;
+        height: 200px;
+    }
 
-button {
-    padding: 15px 38px;
-    font-size: 1.2em;
-    border-radius: 18px;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    transition: transform 0.15s ease;
-}
+    button {
+        padding: 15px 38px;
+        font-size: 1.3em;
+        border-radius: 18px;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        transition: transform 0.15s ease;
+    }
 
-#yes {
-    background: linear-gradient(135deg, #b01630, #6a0f1b);
-    color: #fff;
-    left: 0;
-    bottom: 0;
-    box-shadow: 0 0 35px rgba(255, 100, 150, 1);
-}
+    #yes {
+        background: linear-gradient(135deg, #b01630, #6a0f1b);
+        color: #fff;
+        left: 50%;
+        transform: translateX(-120%);
+        box-shadow: 0 0 30px rgba(255, 100, 150, 1);
+    }
 
-#no {
-    background: linear-gradient(135deg, #333, #111);
-    color: #fff;
-    left: 60%;
-    top: 0;
-}
+    #no {
+        background: linear-gradient(135deg, #333, #111);
+        color: #fff;
+        left: 50%;
+        transform: translateX(20%);
+    }
 
-/* PARTICLES */
-.star, .glitter, .spark {
-    position: absolute;
-    pointer-events: none;
-    opacity: 0;
-}
+    .star, .glitter {
+        position: absolute;
+        pointer-events: none;
+        opacity: 0;
+    }
 
-.star {
-    width: 6px;
-    height: 6px;
-    background: gold;
-    border-radius: 50%;
-    box-shadow: 0 0 14px gold;
-    animation: fall 4s linear infinite;
-}
+    .star {
+        width: 6px;
+        height: 6px;
+        background: gold;
+        border-radius: 50%;
+        box-shadow: 0 0 12px gold;
+        animation: fall 4s linear infinite;
+    }
 
-.glitter {
-    width: 4px;
-    height: 4px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 50%;
-    box-shadow: 0 0 12px white;
-    animation: sparkle 3s linear infinite;
-}
+    .glitter {
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 0 10px white;
+        animation: sparkle 3s linear infinite;
+    }
 
-.spark {
-    width: 3px;
-    height: 3px;
-    background: pink;
-    border-radius: 50%;
-    box-shadow: 0 0 10px hotpink;
-    animation: pulse 2.5s linear infinite;
-}
+    @keyframes fall {
+        0% { transform: translateY(-10vh); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0; }
+    }
 
-@keyframes fall {
-    0% { transform: translateY(-10vh); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateY(110vh); opacity: 0; }
-}
-
-@keyframes sparkle {
-    0% { transform: scale(0); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: scale(1.7); opacity: 0; }
-}
-
-@keyframes pulse {
-    0% { transform: scale(0.5); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: scale(1.4); opacity: 0; }
-}
+    @keyframes sparkle {
+        0% { transform: scale(0); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: scale(1.6); opacity: 0; }
+    }
 </style>
 </head>
 
@@ -144,20 +124,19 @@ button {
 <script>
 const noBtn = document.getElementById("no");
 
-/* 🔥 BEWEGUNGSBEREICH UM DIE BILDSCHIRMMITTE 🔥 */
 function dodge() {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    const rangeX = 180; // horizontaler Radius
-    const rangeY = 140; // vertikaler Radius
+    const rangeX = 200;
+    const rangeY = 160;
 
     const x = centerX - rangeX + Math.random() * rangeX * 2;
     const y = centerY - rangeY + Math.random() * rangeY * 2;
 
-    noBtn.style.left = x - noBtn.offsetWidth / 2 + "px";
-    noBtn.style.top  = y - noBtn.offsetHeight / 2 + "px";
-    noBtn.style.transform = `rotate(${Math.random()*20-10}deg)`;
+    noBtn.style.left = x + "px";
+    noBtn.style.top  = y + "px";
+    noBtn.style.transform = `rotate(${Math.random() * 20 - 10}deg)`;
 }
 
 noBtn.addEventListener("mouseenter", dodge);
@@ -168,8 +147,8 @@ function yesClicked() {
         <div style="
             color:white;
             text-align:center;
-            font-size:2.6em;
-            text-shadow:0 0 45px gold;
+            font-size:2.8em;
+            text-shadow:0 0 40px gold;
         ">
             💖 JAAAA 💖<br><br>
             ✨ Nacho und ich, wir freuen uns! ✨
@@ -177,38 +156,26 @@ function yesClicked() {
     `;
 }
 
-/* GLITTER OVERLOAD */
+// STAR RAIN
 setInterval(() => {
-    for(let i=0;i<3;i++){
-        const s = document.createElement("div");
-        s.className = "star";
-        s.style.left = Math.random()*innerWidth+"px";
-        s.style.animationDuration = 3+Math.random()*3+"s";
-        document.body.appendChild(s);
-        setTimeout(()=>s.remove(),6000);
-    }
-},120);
+    const s = document.createElement("div");
+    s.className = "star";
+    s.style.left = Math.random() * window.innerWidth + "px";
+    s.style.animationDuration = 3 + Math.random() * 3 + "s";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 6000);
+}, 120);
 
+// GLITTER
 setInterval(() => {
-    for(let i=0;i<4;i++){
-        const g = document.createElement("div");
-        g.className = "glitter";
-        g.style.left = Math.random()*innerWidth+"px";
-        g.style.top = Math.random()*innerHeight+"px";
-        g.style.animationDuration = 2+Math.random()*2+"s";
-        document.body.appendChild(g);
-        setTimeout(()=>g.remove(),4000);
-    }
-},80);
-
-setInterval(() => {
-    const p = document.createElement("div");
-    p.className = "spark";
-    p.style.left = Math.random()*innerWidth+"px";
-    p.style.top = Math.random()*innerHeight+"px";
-    document.body.appendChild(p);
-    setTimeout(()=>p.remove(),3000);
-},60);
+    const g = document.createElement("div");
+    g.className = "glitter";
+    g.style.left = Math.random() * window.innerWidth + "px";
+    g.style.top = Math.random() * window.innerHeight + "px";
+    g.style.animationDuration = 2 + Math.random() * 2 + "s";
+    document.body.appendChild(g);
+    setTimeout(() => g.remove(), 4000);
+}, 70);
 </script>
 
 </body>
