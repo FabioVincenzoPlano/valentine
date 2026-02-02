@@ -18,7 +18,6 @@ body {
     align-items: center;
 }
 
-/* MAIN CARD */
 .container {
     text-align: center;
     z-index: 5;
@@ -41,7 +40,6 @@ img {
     margin-bottom: 30px;
 }
 
-/* BUTTON AREA */
 .buttons {
     position: relative;
     width: 100%;
@@ -71,11 +69,11 @@ button {
 #no {
     background: linear-gradient(135deg, #333, #111);
     color: #fff;
-    right: 0;
-    bottom: 0;
+    left: 60%;
+    top: 0;
 }
 
-/* ✨ PARTICLES ✨ */
+/* PARTICLES */
 .star, .glitter, .spark {
     position: absolute;
     pointer-events: none;
@@ -137,7 +135,7 @@ button {
 
     <img src="image.png" alt="Wir zwei">
 
-    <div class="buttons" id="btnArea">
+    <div class="buttons">
         <button id="yes" onclick="yesClicked()">JA 💎</button>
         <button id="no">NEIN</button>
     </div>
@@ -145,17 +143,20 @@ button {
 
 <script>
 const noBtn = document.getElementById("no");
-const area = document.getElementById("btnArea");
 
+/* 🔥 BEWEGUNGSBEREICH UM DIE BILDSCHIRMMITTE 🔥 */
 function dodge() {
-    const maxX = area.clientWidth - noBtn.offsetWidth;
-    const maxY = area.clientHeight - noBtn.offsetHeight;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const rangeX = 180; // horizontaler Radius
+    const rangeY = 140; // vertikaler Radius
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    const x = centerX - rangeX + Math.random() * rangeX * 2;
+    const y = centerY - rangeY + Math.random() * rangeY * 2;
+
+    noBtn.style.left = x - noBtn.offsetWidth / 2 + "px";
+    noBtn.style.top  = y - noBtn.offsetHeight / 2 + "px";
     noBtn.style.transform = `rotate(${Math.random()*20-10}deg)`;
 }
 
@@ -176,7 +177,7 @@ function yesClicked() {
     `;
 }
 
-/* ⭐ MASSIVE GLITTER OVERLOAD ⭐ */
+/* GLITTER OVERLOAD */
 setInterval(() => {
     for(let i=0;i<3;i++){
         const s = document.createElement("div");
